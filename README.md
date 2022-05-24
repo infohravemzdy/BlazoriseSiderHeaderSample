@@ -10,3 +10,11 @@ There is weird behaviour that I see in this sample.
 - ToggleBar is not visible, even if there is Display attribute modification set to Display.InlineFlex
 - Height of horizontal bar is not the same as height of Brand component in vertical bar, so opening and closing dont appears esthetical and theme settings not playing any role
 
+
+Side Menu opened
+
+![](assets/20220524_142231_BlazoriseSiderHeaderSample.png)
+
+Side menu closed and slided down
+
+![](assets/20220524_142231_BlazoriseSiderHeaderSample-Closed.png)
