@@ -1,6 +1,4 @@
-﻿#define __BAR_HEIGHT_MODIFY__ 1
-
-<Blazorise.ThemeProvider Theme="@theme">
+﻿<Blazorise.ThemeProvider Theme="@theme">
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
             <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -23,7 +21,7 @@
 #endif
         BarOptions = new ThemeBarOptions
         {
-            HorizontalHeight = "28px",
+            HorizontalHeight = "52px", 
         },
     };
 }
