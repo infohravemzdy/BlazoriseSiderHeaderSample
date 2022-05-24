@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "BlazoriseTopHeaderSample": {
+    "BlazoriseSiderHeaderSample": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
