@@ -1,0 +1,41 @@
+﻿@namespace BlazoriseSiderHeaderSample.Shared
+
+@inherits LayoutComponentBase
+<CascadingValue Value="@this">
+    <Layout>
+        <LayoutHeader Fixed="true">
+            <AppMainBar @ref="Mainbar" SideMenu="@NavMenu?.SideMenu"></AppMainBar>
+        </LayoutHeader>
+        <Layout Sider="true">
+            <LayoutSider>
+                <LayoutSiderContent>
+                    <AppNavMenu @ref="@NavMenu" /> 
+                </LayoutSiderContent>
+            </LayoutSider>
+            <Layout>
+                <LayoutContent Padding="Padding.Is4.OnX">
+                    @Body
+                </LayoutContent>
+            </Layout>
+        </Layout>
+    </Layout>
+</CascadingValue>
+
+@code {
+    public AppMainBar? Mainbar { get; set; }
+
+    public AppNavMenu? NavMenu { get; set; }
+
+    public void UpdateSideMenuRef(Bar? sideMenu)
+    {
+        Mainbar?.UpdateSideMenuRef(sideMenu);
+           
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+
+}

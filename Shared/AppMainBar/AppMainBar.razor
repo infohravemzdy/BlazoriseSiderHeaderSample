@@ -1,0 +1,77 @@
+﻿@namespace BlazoriseSiderHeaderSample.Shared
+
+@using BlazoriseSiderHeaderSample.Shared.Period
+
+<Bar @bind-Visible="@topBarVisible" Mode="BarMode.Horizontal" Breakpoint="Breakpoint.Desktop" 
+     Background="Background.Primary" ThemeContrast="ThemeContrast.Light">
+    <BarBrand Background="Background.Warning" >                
+        <BarItem>
+            <BarLink To="" Title="Blazorise Demo">
+                <BarIcon IconName="IconName.Dashboard" />
+                Blazorise Demo
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarToggler @ref="TogglerRef" Display="Display.InlineFlex" Bar="@SideMenu"/>
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarLink To="https://blazorise.com/">Home</BarLink>
+            </BarItem>
+        </BarStart>
+        <BarEnd Padding="Padding.Is2.OnX">
+            <BarItem>
+                <BarDropdown RightAligned>
+                    <BarDropdownToggle><Icon Name="IconName.Clock" Padding="Padding.Is2.OnX"/> Period</BarDropdownToggle>
+                    <BarDropdownMenu Style="padding: 15px; min-width:150px;">
+                        @foreach ( var periodInfo in Periods )
+                        {
+                            <BarDropdownItem @key="@periodInfo.Name" Clicked="@(()=>SelectPeriod(periodInfo.Code))">
+                                @periodInfo.Name
+                            </BarDropdownItem>
+                        }
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+        </BarEnd>
+    </BarMenu>
+</Bar>
+
+@code {
+    [Parameter]
+    public Bar? SideMenu { get; set; }
+
+    public BarToggler? TogglerRef { get; set; }
+
+    public bool topBarVisible = true;
+
+    public void UpdateSideMenuRef(Bar? sideMenu)
+    {
+        SideMenu = sideMenu;
+
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SelectPeriod(202201);
+
+        await base.OnInitializedAsync();
+    }
+
+    IList<PeriodInfo> Periods = new List<PeriodInfo>
+    {
+        new PeriodInfo(202201),
+        new PeriodInfo(202202),
+        new PeriodInfo(202203),
+    };
+
+    PeriodInfo? currentPeriod { get; set; }
+
+    Task SelectPeriod(Int32 periodCode)
+    {
+        currentPeriod = Periods.FirstOrDefault(x => x.Code == periodCode);
+
+        return Task.CompletedTask;
+    }
+}
